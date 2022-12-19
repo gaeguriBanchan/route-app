@@ -10,9 +10,11 @@ import SongList from "./pages/SongList";
 import Header from "./components/Header";
 import Player from "./pages/Player";
 import PlayerIndex from "./pages/PlayerIndex";
+import NotFound from "./pages/NotFound";
 import {
   Await,
   BrowserRouter as Router,
+  Navigate,
   Route,
   Routes,
 } from "react-router-dom";
@@ -51,13 +53,15 @@ const App = () => {
         <Routes>
           {/* <Route path="개발자가 설정한URL" />
           <Route path="/ : 도메인만 입력" /> */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About title="인디밴드" />} />
           <Route path="/members" element={<Members members={members} />} />
           <Route path="/songs" element={<SongList songs={songs} />}>
             <Route index element={<PlayerIndex />} />
             <Route path=":id" element={<Player songs={songs} />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
